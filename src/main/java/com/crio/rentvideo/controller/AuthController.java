@@ -16,13 +16,13 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<User> register(@RequestBody UserDTO userDTO) {
-        User user = authService.registerUser(userDTO);
-        return ResponseEntity.ok(user);
+        User registeredUser = authService.registerUser(userDTO);
+        return ResponseEntity.ok(registeredUser);
     }
 
     @PostMapping("/login")
-    public ResponseEntity<User> login(@RequestParam String email, @RequestParam String password) {
-        User user = authService.loginUser(email, password);
-        return ResponseEntity.ok(user);
+    public ResponseEntity<String> login(@RequestBody UserDTO userDTO) {
+        String token = authService.loginUser(userDTO);
+        return ResponseEntity.ok(token);
     }
 }
